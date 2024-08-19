@@ -5,8 +5,8 @@ function quicksort(array $a) {
     if ($aLen < 2) {
         return $a;
     } elseif($aLen === 2) {
-		    return ($a[0] > $a[1]) ? [$a[1], $a[0]] : $a;
-	  }
+	return ($a[0] > $a[1]) ? [$a[1], $a[0]] : $a;
+    }
 
     $pivot = $a[rand(0, $aLen - 1)];
 	
