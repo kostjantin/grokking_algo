@@ -9,6 +9,12 @@ func quicksort(a []int) []int {
 	aLen := len(a)
 	if aLen < 2 {
 		return a
+	} else if aLen == 2 {
+		if a[0] > a[1] {
+			a[0], a[1] = a[1], a[0]
+		}
+
+		return a
 	}
 
 	pivot := a[rand.Intn(aLen)]
@@ -31,7 +37,7 @@ func quicksort(a []int) []int {
 }
 
 func main() {
-	a := []int{1, 5, 2, 8, 7, 13, 23, 4, 9}
+	a := []int{1, 5, 2, 8, 7, 13, 23, 4, 9, 45, 100, 5, 1, 23, 54, 42, 42}
 
 	fmt.Println("Sorted array:", quicksort(a))
 }
