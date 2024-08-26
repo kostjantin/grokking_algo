@@ -1,33 +1,33 @@
 <?php
 
+/**
+ * @param array<int> $a
+ * @return array<int>
+ */
 function quicksort(array $a) {
-    $aLen = count($a);
-    if ($aLen < 2) {
+    $a_len = count($a);
+    if ($a_len < 2) {
         return $a;
-    } elseif($aLen === 2) {
+    } elseif($a_len === 2) {
 	return ($a[0] > $a[1]) ? [$a[1], $a[0]] : $a;
     }
 
-    $pivot = $a[rand(0, $aLen - 1)];
+    $pivot = $a[rand(0, $a_len - 1)];
 	
-    $firstPart = $equalPart = $secondPart = [];
-    for($i = 0; $i < $aLen; $i++) {
+    $first_part = $equal_part = $second_part = [];
+    for($i = 0; $i < $a_len; $i++) {
         if ($a[$i] < $pivot) {
-            $firstPart[] = $a[$i];
+            $first_part[] = $a[$i];
         } elseif ($a[$i] === $pivot) {
-            $equalPart[] = $a[$i];
+            $equal_part[] = $a[$i];
         } else {
-            $secondPart[] = $a[$i];
+            $second_part[] = $a[$i];
         }
     }
 
-    return [
-      ...quicksort($firstPart), 
-      ...quicksort($equalPart), 
-      ...quicksort($secondPart), 
-    ];
+    return array_merge(
+      quicksort($first_part),
+      quicksort($equal_part),
+      quicksort($second_part),
+    );
 }
-
-var_dump(quicksort(
-  [1, 5, 2, 8, 7, 13, 23, 4, 9, 45, 100, 5, 1, 23, 54, 42, 42]
-));
