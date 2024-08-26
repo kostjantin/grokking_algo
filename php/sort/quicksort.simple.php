@@ -4,7 +4,7 @@
  * @param array<int> $a
  * @return array<int>
  */
-function quicksort(array $a)
+function quicksort(array $a): array
 {
     $a_len = count($a);
     if ($a_len < 2) {
@@ -17,18 +17,16 @@ function quicksort(array $a)
 
     $first_part = $equal_part = $second_part = [];
     for ($i = 0; $i < $a_len; $i++) {
-        if ($a[$i] < $pivot) {
-            $first_part[] = $a[$i];
-        } elseif ($a[$i] === $pivot) {
-            $equal_part[] = $a[$i];
-        } else {
-            $second_part[] = $a[$i];
-        }
+        match ($a[$i] <=> $pivot) {
+            -1 => $first_part[] = $a[$i],
+            0 => $equal_part[] = $a[$i],
+            1 => $second_part[] = $a[$i],
+        };
     }
 
     return array_merge(
         quicksort($first_part),
-        quicksort($equal_part),
+        $equal_part,
         quicksort($second_part),
     );
 }
